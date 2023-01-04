@@ -1,140 +1,49 @@
-import "bootstrap/dist/css/bootstrap.min.css"
-import { useMemo } from "react"
-import { Container } from "react-bootstrap"
-import { Routes, Route, Navigate } from "react-router-dom"
-import { NewNote } from "./NewNote"
-import { useLocalStorage } from "./useLocalStorage"
-import { v4 as uuidV4 } from "uuid"
-import { NoteList } from "./NoteList"
-import { NoteLayout } from "./NoteLayout"
-import { Note } from "./Note"
-import { EditNote } from "./EditNote"
+import React, { useState } from "react";
+import { fetchQuizQuestions } from "./api";
+// Components
+import QuestionCard from "./components/question-card";
 
-export type Note = {
-  id: string
-} & NoteData
+interface AppProps {}
 
-export type RawNote = {
-  id: string
-} & RawNoteData
+const TOTAL_QUESTIONS = 10;
 
-export type RawNoteData = {
-  title: string
-  markdown: string
-  tagIds: string[]
-}
+const App: React.FC<AppProps> = () => {
+  const [loading, setLoading] = useState(false);
+  const [questions, setQuestions] = useState([]);
+  const [number, setNumber] = useState(0);
+  const [userAnswers, setuserAnswers] = useState([]);
+  const [score, setScore] = useState(0);
+  const [gameOver, setGameOver] = useState(true);
 
-export type NoteData = {
-  title: string
-  markdown: string
-  tags: Tag[]
-}
+  console.log(fetchQuizQuestions());
 
-export type Tag = {
-  id: string
-  label: string
-}
+  const startTrivia = async () => {};
 
-function App() {
-  const [notes, setNotes] = useLocalStorage<RawNote[]>("NOTES", [])
-  const [tags, setTags] = useLocalStorage<Tag[]>("TAGS", [])
+  const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {};
 
-  const notesWithTags = useMemo(() => {
-    return notes.map(note => {
-      return { ...note, tags: tags.filter(tag => note.tagIds.includes(tag.id)) }
-    })
-  }, [notes, tags])
-
-  function onCreateNote({ tags, ...data }: NoteData) {
-    setNotes(prevNotes => {
-      return [
-        ...prevNotes,
-        { ...data, id: uuidV4(), tagIds: tags.map(tag => tag.id) },
-      ]
-    })
-  }
-
-  function onUpdateNote(id: string, { tags, ...data }: NoteData) {
-    setNotes(prevNotes => {
-      return prevNotes.map(note => {
-        if (note.id === id) {
-          return { ...note, ...data, tagIds: tags.map(tag => tag.id) }
-        } else {
-          return note
-        }
-      })
-    })
-  }
-
-  function onDeleteNote(id: string) {
-    setNotes(prevNotes => {
-      return prevNotes.filter(note => note.id !== id)
-    })
-  }
-
-  function addTag(tag: Tag) {
-    setTags(prev => [...prev, tag])
-  }
-
-  function updateTag(id: string, label: string) {
-    setTags(prevTags => {
-      return prevTags.map(tag => {
-        if (tag.id === id) {
-          return { ...tag, label }
-        } else {
-          return tag
-        }
-      })
-    })
-  }
-
-  function deleteTag(id: string) {
-    setTags(prevTags => {
-      return prevTags.filter(tag => tag.id !== id)
-    })
-  }
+  const nextQuestion = () => {};
 
   return (
-    <Container className="my-4">
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <NoteList
-              notes={notesWithTags}
-              availableTags={tags}
-              onUpdateTag={updateTag}
-              onDeleteTag={deleteTag}
-            />
-          }
-        />
-        <Route
-          path="/new"
-          element={
-            <NewNote
-              onSubmit={onCreateNote}
-              onAddTag={addTag}
-              availableTags={tags}
-            />
-          }
-        />
-        <Route path="/:id" element={<NoteLayout notes={notesWithTags} />}>
-          <Route index element={<Note onDelete={onDeleteNote} />} />
-          <Route
-            path="edit"
-            element={
-              <EditNote
-                onSubmit={onUpdateNote}
-                onAddTag={addTag}
-                availableTags={tags}
-              />
-            }
-          />
-        </Route>
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </Container>
-  )
-}
+    <div>
+      <h1>REACT QUIZ</h1>
+      <button className="start" onClick={startTrivia}>
+        Start
+      </button>
+      <p className="score">Score:</p>
+      <p className="">Loading Questions ...</p>
+      {/* <QuestionCard
+        questionNr={number + 1}
+        totalQuestions={TOTAL_QUESTIONS}
+        question={questions[number].question}
+        answers={questions[number].answers}
+        userAnswer={userAnswers ? userAnswers[number] : undefined}
+        callback={checkAnswer}
+      /> */}
+      <button className="next" onClick={nextQuestion}>
+        Next Question
+      </button>
+    </div>
+  );
+};
 
-export default App
+export default App;
