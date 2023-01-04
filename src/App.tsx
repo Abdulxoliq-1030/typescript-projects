@@ -6,7 +6,7 @@ import QuestionCard from "./components/question-card";
 
 interface AppProps {}
 
-type AnswerObject = {
+export type AnswerObject = {
   question: string;
   answer: string;
   correct: boolean;
@@ -54,10 +54,20 @@ const App: React.FC<AppProps> = () => {
         correct,
         correctAnswer: questions[number].correct_answers,
       };
+      setUserAnswers((prev) => [...prev, answerObject]);
     }
   };
 
-  const nextQuestion = () => {};
+  const nextQuestion = () => {
+    // move on to the next question if not the last question
+    const nextQuestion = number + 1;
+
+    if (nextQuestion === TOTAL_QUESTIONS) {
+      setGameOver(true);
+    } else {
+      setNumber(nextQuestion);
+    }
+  };
 
   return (
     <div>
