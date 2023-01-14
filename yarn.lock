@@ -1315,6 +1315,11 @@ property-information@^6.0.0:
   resolved "https://registry.yarnpkg.com/property-information/-/property-information-6.2.0.tgz#b74f522c31c097b5149e3c3cb8d7f3defd986a1d"
   integrity sha512-kma4U7AFCTwpqq5twzC1YVIDXSqg6qQK6JN0smOw8fgRy1OkMi0CYSzFmsy6dnqSenamAtj0CyXMUJ1Mf6oROg==
 
+qr.js@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/qr.js/-/qr.js-0.0.0.tgz#cace86386f59a0db8050fa90d9b6b0e88a1e364f"
+  integrity sha512-c4iYnWb+k2E+vYpRimHqSu575b1/wKl4XFeJGpFmrJQz5I88v9aY2czh7s0w36srfCM1sXgC/xpoJz5dJfq+OQ==
+
 react-bootstrap@^2.5.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/react-bootstrap/-/react-bootstrap-2.7.0.tgz#4a8f0311bccac477dc925366763c536f46e4393b"
@@ -1376,6 +1381,14 @@ react-markdown@^8.0.3:
     unified "^10.0.0"
     unist-util-visit "^4.0.0"
     vfile "^5.0.0"
+
+react-qr-code@^2.0.11:
+  version "2.0.11"
+  resolved "https://registry.yarnpkg.com/react-qr-code/-/react-qr-code-2.0.11.tgz#444c759a2100424972e17135fbe0e32eaffa19e8"
+  integrity sha512-P7mvVM5vk9NjGdHMt4Z0KWeeJYwRAtonHTghZT2r+AASinLUUKQ9wfsGH2lPKsT++gps7hXmaiMGRvwTDEL9OA==
+  dependencies:
+    prop-types "^15.8.1"
+    qr.js "0.0.0"
 
 react-refresh@^0.13.0:
   version "0.13.0"
