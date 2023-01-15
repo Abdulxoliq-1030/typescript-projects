@@ -1,0 +1,18 @@
+.wrap {
+	padding: 30px;
+	display: grid;
+	grid-template-columns: repeat(4,1fr);
+	gap: 20px;
+}
+.wrapper {
+	background-color: #ddd;
+	padding: 40px;
+	border-radius: 20px;
+	width: 200px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	box-shadow: 2px 2px 4px 4px #ddd;
+	cursor: pointer;
+}
