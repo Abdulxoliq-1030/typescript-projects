@@ -3,6 +3,7 @@ import * as Pages from "../pages"
 
 interface IRoute {
 path: string;
+title: string;
 Component: ComponentType<any>
 }
 
@@ -10,30 +11,37 @@ Component: ComponentType<any>
 export const routes: IRoute[] = [
 	{
 		path: "/",
-		Component: Pages.Home
+		Component: Pages.Home,
+		title: 'Home'
 	},
 	{
 		path: "/albums",
-		Component: Pages.Albums
+		Component: Pages.Albums,
+		title: "Albums"
 	},
 	{
 		path: "/comments",
-		Component: Pages.Comments
+		Component: Pages.Comments,
+		title: "Comments"
 	},
 	{
 		path: "/photos",
-		Component: Pages.Photos
+		Component: Pages.Photos,
+		title: "Photos"
 	},
 	{
 		path: "/posts",
-		Component: Pages.Posts
+		Component: Pages.Posts,
+		title: "Posts"
 	},
 	{
 		path: "/todos",
-		Component: Pages.Todos
+		Component: Pages.Todos,
+		title: "Todos"
 	},	
 	{
 		path: "/users",
-		Component: Pages.Users
+		Component: Pages.Users,
+		title: "Users"
 	},
 ]

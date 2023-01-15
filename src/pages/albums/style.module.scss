@@ -1,0 +1,11 @@
+.wrapper {
+	display: grid;
+	grid-template-columns: repeat(3,1fr);
+
+
+	.item {
+		display: flex;
+		align-items: center;
+		gap: 15px;
+	}
+}

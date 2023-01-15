@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Navbar } from "./components";
+import Routes from "./routes/routes";
 
 interface AppProps {}
 
 const App: React.FC<AppProps> = () => {
-  return <div>App</div>;
+  return (
+    <>
+      <Navbar />
+      <Routes />
+    </>
+  );
 };
 
 export default App;
